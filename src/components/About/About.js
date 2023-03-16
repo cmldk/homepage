@@ -1,6 +1,7 @@
 import { Trans, useTranslation } from 'react-i18next';
 import { useData } from '../../DataProvider';
 import Social from '../Social/Social';
+import RecentPosts from './RecentPosts';
 
 export default function About() {
   const { t } = useTranslation();
@@ -8,14 +9,14 @@ export default function About() {
 
   return (
     <div className="text-dark dark:text-light mt-6">
-      <section className="max-w-xl mx-auto text-center font-['regular']">
+      <section className="max-w-xl font-['regular']">
         {about && (
           <>
             {about.pp && (
               <img
                 src={about.pp}
                 alt="PP"
-                className="max-h-32 mx-auto rounded-full mb-5 select-none shadow-lg"
+                className="max-h-32 rounded-full mb-5 select-none shadow-lg"
               />
             )}
             <p className="text-3xl font-bold">
@@ -46,10 +47,11 @@ export default function About() {
             </p>
           </>
         )}
-        <div className="flex items-center justify-center mt-4">
-          <Social iconClassName="px-2" />
+        <div className="flex items-center mt-4">
+          <Social iconClassName="mr-4" />
         </div>
       </section>
+      <RecentPosts />
     </div>
   );
 }
