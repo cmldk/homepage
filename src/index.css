@@ -1,0 +1,70 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@font-face {
+  font-family: 'regular';
+  src: URL('./assets/font/Poppins-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'semibold';
+  src: URL('./assets/font/Poppins-SemiBold.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'bold';
+  src: URL('./assets/font/Poppins-Bold.ttf') format('truetype');
+}
+
+:root {
+  --color-portakal: #ffac08;
+  --color-mandalina: #fce8cd;
+}
+
+body {
+  --sb-track-color: #232e33;
+  --sb-thumb-color: #ffac08;
+  --sb-size: 5px;
+
+  scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
+}
+
+body::-webkit-scrollbar {
+  width: var(--sb-size);
+  height: var(--sb-size)
+}
+
+body::-webkit-scrollbar-track {
+  background: var(--sb-track-color);
+  border-radius: 10px;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: var(--sb-thumb-color);
+  border-radius: 10px;
+
+}
+
+input::-webkit-search-cancel-button {
+  display: none
+}
+
+body * {
+  @apply transition-colors duration-200;
+}
+
+.page-enter {
+  opacity: 0;
+}
+
+.page-enter-active {
+  opacity: 1;
+  transition: opacity 250ms;
+}
+
+.page-exit {
+  opacity: 1;
+}
+
+.page-exit-active {
+  opacity: 0;
+  transition: opacity 250ms;
+}

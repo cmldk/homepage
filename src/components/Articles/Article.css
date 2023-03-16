@@ -1,0 +1,16 @@
+.article-heading:hover .anchor-heading {
+  visibility: visible;
+}
+
+.anchor-heading {
+  font-size: 1.4rem;
+  color: var(--color-portakal);
+  visibility: hidden;
+  position: absolute;
+  margin-left: -1em;
+  padding-right: 0.5em;
+}
+
+blockquote p {
+  line-height: 28px !important;
+}
