@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 import { useData } from '../../DataProvider';
+import { slugify } from '../../helper/helper';
 
 export default function RecentPosts() {
   const { t } = useTranslation();
@@ -22,16 +24,19 @@ export default function RecentPosts() {
   return (
     recentPosts && (
       <section className="font-['regular'] mt-12">
-        <p className="text-2xl font-['semibold'] mb-3">Recent Posts</p>
+        <p className="text-xl font-['semibold'] mb-3">{t('recent_posts')}</p>
         <div className="grid grid-cols-3 gap-4">
           {recentPosts.map((post) => (
-            <div className="p-3 border-4 border-mandalina hover:border-portakal dark:border-opacity-25 dark:hover:border-opacity-100 rounded-md cursor-pointer">
+            <Link
+              to={`/articles/${slugify(post.title)}`}
+              className="p-3 border-4 border-mandalina hover:border-portakal dark:border-opacity-25 dark:hover:border-opacity-100 rounded-md"
+            >
               <p className="text-lg font-['semibold']">{post.title}</p>
               <p className="text-sm font-['regular'] font-semibold uppercase my-1">
                 {t('min_read', { time: post.time })}
               </p>
               <p className="text-sm line-clamp-5">{post.description}</p>
-            </div>
+            </Link>
           ))}
         </div>
       </section>
