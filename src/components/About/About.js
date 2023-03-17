@@ -9,7 +9,7 @@ export default function About() {
   const { about } = useData();
 
   return (
-    <div className="text-dark dark:text-light mt-6">
+    <div className="text-dark dark:text-light mt-6 flex flex-col gap-y-12">
       <section className="max-w-xl font-['regular']">
         {about && (
           <>

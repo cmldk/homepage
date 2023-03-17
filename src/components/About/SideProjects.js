@@ -22,12 +22,12 @@ export default function SideProjects() {
 
   return (
     sideProjects && (
-      <section className="font-['regular'] mt-12">
+      <section className="font-['regular']">
         <p className="text-xl font-['semibold'] mb-3">{t('side_projects')}</p>
         <div className="grid grid-cols-3 gap-4">
           {sideProjects.map((project) => (
             <Link
-              className="p-3 border-4 border-mandalina hover:border-portakal dark:border-opacity-25 dark:hover:border-opacity-100 rounded-md"
+              className="p-3 border-4 border-mandalina hover:border-portakal dark:border-gray-700 dark:hover:border-portakal rounded-md"
               to={'/projects'}
             >
               <p className="text-lg font-['semibold'] line-clamp-1 mb-2">

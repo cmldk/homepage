@@ -60,17 +60,12 @@ export default function Article() {
   };
 
   const getTags = () => {
-    return article.tag
-      .split(';')
-      .sort()
-      .map((tag) => (
-        <div
-          key={tag}
-          className="rounded-full max-w-14 truncate py-1 px-3 text-xs bg-gray-200 dark:bg-gray-700 text-gray-500 dark:text-gray-400 hover:bg-gray-300 dark:hover:bg-gray-600"
-        >
-          {tag}
-        </div>
-      ));
+    const tags = article.tag.replaceAll(';', ', ');
+    return (
+      <span className="text-sm text-portakal uppercase flex-1 text-right">
+        {tags}
+      </span>
+    );
   };
 
   return (
@@ -89,11 +84,7 @@ export default function Article() {
           >
             {getDate()}
           </time>
-          {article.tag && (
-            <div className="flex items-center text-gray-400 gap-x-2">
-              {getTags()}
-            </div>
-          )}
+          {article.tag && getTags()}
         </div>
       </div>
     )
