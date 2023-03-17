@@ -2,6 +2,7 @@ import { Trans, useTranslation } from 'react-i18next';
 import { useData } from '../../DataProvider';
 import Social from '../Social/Social';
 import RecentPosts from './RecentPosts';
+import SideProjects from './SideProjects';
 
 export default function About() {
   const { t } = useTranslation();
@@ -52,6 +53,7 @@ export default function About() {
         </div>
       </section>
       <RecentPosts />
+      <SideProjects />
     </div>
   );
 }

@@ -20,6 +20,7 @@ const DataProvider = ({ children, pathName }) => {
   const [about, setAbout] = useState();
   const [bookmarks, setBookmarks] = useState();
   const [articles, setArticles] = useState();
+  const [projects, setProjects] = useState();
   const [suggestion, setSuggestion] = useState();
 
   useEffect(() => {
@@ -63,19 +64,11 @@ const DataProvider = ({ children, pathName }) => {
   };
 
   const _setSocial = (data) => {
-    const socialData = [];
-    data.forEach((row) => {
-      if (row.display) socialData.push(row);
-    });
-    setSocial(socialData);
+    setSocial(data.filter((row) => row.display));
   };
 
   const _setHeader = (data) => {
-    const headerData = [];
-    data.forEach((row) => {
-      if (row.display) headerData.push(row.key);
-    });
-    setHeader(headerData);
+    setHeader(data.filter((row) => row.display).map((row) => row.key));
   };
 
   const setResources = async (data) => {
@@ -125,6 +118,10 @@ const DataProvider = ({ children, pathName }) => {
     setArticles(sortedData);
   };
 
+  const _setProjects = (data) => {
+    setProjects(data.filter((row) => row.display));
+  };
+
   const _setSuggestion = (data) => {
     setSuggestion(data[0]);
   };
@@ -137,6 +134,7 @@ const DataProvider = ({ children, pathName }) => {
     bookmarks: _setBookmarks,
     suggestion: _setSuggestion,
     articles: _setArticles,
+    projects: _setProjects,
   };
 
   const setLoading = (value) => {
@@ -154,6 +152,7 @@ const DataProvider = ({ children, pathName }) => {
         languages,
         suggestion,
         articles,
+        projects,
       }}
     >
       {children}
@@ -171,6 +170,7 @@ const useData = () => {
     languages,
     articles,
     suggestion,
+    projects,
   } = useContext(DataContext);
   return {
     social,
@@ -181,6 +181,7 @@ const useData = () => {
     languages,
     suggestion,
     articles,
+    projects,
   };
 };
 

@@ -35,7 +35,9 @@ export default function RecentPosts() {
               <p className="text-sm font-['regular'] font-semibold uppercase my-1">
                 {t('min_read', { time: post.time })}
               </p>
-              <p className="text-sm line-clamp-5">{post.description}</p>
+              <p className="text-sm line-clamp-5 dark:text-gray-400">
+                {post.description}
+              </p>
             </Link>
           ))}
         </div>

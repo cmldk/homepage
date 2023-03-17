@@ -53,7 +53,7 @@ function ArticleCard({ article }) {
               {article.title}
             </Link>
           </h3>
-          <p className="mt-3 text-sm leading-6 text-dark dark:text-gray-300 line-clamp-4">
+          <p className="mt-3 text-sm leading-6 text-dark dark:text-gray-400 line-clamp-4">
             {article.description}
           </p>
         </div>

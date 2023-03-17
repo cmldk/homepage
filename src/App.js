@@ -16,12 +16,19 @@ import Footer from './components/Footer/Footer';
 import { DataProvider } from './DataProvider';
 import Articles from './components/Articles/Articles';
 import Article from './components/Articles/Article';
+import Projects from './components/Projects/Projects';
 
 const routes = [
   {
     path: '/',
     name: 'aboutme',
     element: <About />,
+    nodeRef: createRef(),
+  },
+  {
+    path: '/projects',
+    name: 'projects',
+    element: <Projects />,
     nodeRef: createRef(),
   },
   {
