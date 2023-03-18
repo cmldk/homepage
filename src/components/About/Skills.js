@@ -14,11 +14,11 @@ export default function Skills() {
             return (
               <div
                 key={skill.row_id}
-                className="flex items-center gap-2 py-2 px-4 h-16 border border-gray-300 dark:border-gray-600 rounded-md text-dark dark:text-light bg-gray-100 dark:bg-gray-700"
+                className="flex items-center gap-2 py-2 px-4 h-14 border border-gray-300 dark:border-gray-600 rounded-md text-dark dark:text-light bg-gray-100 dark:bg-gray-700"
               >
                 {skill?.logo && (
                   <img
-                    className="h-10 w-10 rounded-md"
+                    className="h-8 w-8 rounded-md"
                     src={skill.logo}
                     alt={skill.title}
                   />
