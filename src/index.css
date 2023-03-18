@@ -69,10 +69,8 @@ body * {
   transition: opacity 250ms;
 }
 
-@media screen and (max-width: 400px) {
-
-  .logo-wrapper,
-  .logo {
-    display: none;
+@media screen and (max-width: 600px) {
+  .container {
+    width: 94%;
   }
 }

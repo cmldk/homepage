@@ -28,7 +28,7 @@ export default function Header() {
 
   return (
     <header className="bg-white dark:bg-dark pt-10 font-['regular']">
-      <nav className="mx-auto flex items-center py-6" aria-label="Global">
+      <nav className="hidden sm:flex mx-auto items-center py-6">
         <span className="flex-1 logo-wrapper">
           <a href="/" className="-m-1.5 p-1.5 inline-flex logo select-none">
             {about && (
@@ -45,7 +45,7 @@ export default function Header() {
         </span>
         {header && (
           <>
-            <Popover.Group className="flex items-center">
+            <Popover.Group className="flex items-center flex-wrap">
               {headerItems.map((item, index) => {
                 if (!header.includes(item.key)) {
                   return null;
@@ -55,7 +55,7 @@ export default function Header() {
                   <Link
                     key={index}
                     to={item.href}
-                    className={`text-sm leading-6 mr-2 sm:mr-4 select-none ${
+                    className={`text-sm leading-6 mr-4 select-none ${
                       isActive(item.href)
                         ? 'underline underline-offset-8 decoration-portakal text-portakal'
                         : 'dark:text-gray-400 text-dark hover:text-portakal dark:hover:text-portakal'
@@ -66,11 +66,60 @@ export default function Header() {
                 );
               })}
             </Popover.Group>
-            {header.includes('darkmode') && <DarkModeSwitcher />}
-            {header.includes('translation') && <LanguageSwitcher />}
+            <span className="flex items-center mb-2 sm:mb-0">
+              {header.includes('darkmode') && <DarkModeSwitcher />}
+              {header.includes('translation') && <LanguageSwitcher />}
+            </span>
           </>
         )}
       </nav>
+      <nav className="flex justify-between sm:hidden mx-auto items-center py-2">
+        <span className="flex-1 logo-wrapper">
+          <a href="/" className="-m-1.5 p-1.5 inline-flex logo select-none">
+            {about && (
+              <>
+                <span className="sr-only">{`${about.name} ${about.surname}`}</span>
+                <img
+                  className="h-8 w-auto"
+                  src={about.logo}
+                  alt={`${about.name} ${about.surname}`}
+                />
+              </>
+            )}
+          </a>
+        </span>
+        {header && (
+          <>
+            <span className="flex items-center mb-2 sm:mb-0">
+              {header.includes('darkmode') && <DarkModeSwitcher />}
+              {header.includes('translation') && <LanguageSwitcher />}
+            </span>
+          </>
+        )}
+      </nav>
+      {header && (
+        <Popover.Group className="flex sm:hidden items-center flex-wrap">
+          {headerItems.map((item, index) => {
+            if (!header.includes(item.key)) {
+              return null;
+            }
+
+            return (
+              <Link
+                key={index}
+                to={item.href}
+                className={`text-sm leading-6 mb-2 sm:mb-0 mr-4 select-none ${
+                  isActive(item.href)
+                    ? 'underline underline-offset-8 decoration-portakal text-portakal'
+                    : 'dark:text-gray-400 text-dark hover:text-portakal dark:hover:text-portakal'
+                }`}
+              >
+                {item.title}
+              </Link>
+            );
+          })}
+        </Popover.Group>
+      )}
     </header>
   );
 }

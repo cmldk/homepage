@@ -9,7 +9,7 @@ export default function Skills() {
     skills && (
       <div>
         <p className="text-xl font-['semibold'] mb-3">{t('skills')}</p>
-        <div className="grid grid-cols-4 gap-4 text-center font-['regular'] text-md">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 font-['regular'] gap-4 text-center">
           {skills.map((skill) => {
             return (
               <div
