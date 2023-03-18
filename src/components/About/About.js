@@ -10,47 +10,43 @@ export default function About() {
   const { about } = useData();
 
   return (
-    <div className="text-dark dark:text-light mt-6 flex flex-col gap-y-16">
-      <section className="max-w-xl font-['regular']">
+    <div className="text-dark dark:text-light mt-6 flex flex-col gap-y-20">
+      <section className="font-['regular']">
         {about && (
-          <>
+          <div className="flex items-center mt-10">
+            <div className="max-w-xl">
+              <p className="text-3xl font-bold mb-3">
+                {t('greeting', { name: about.name })}
+              </p>
+              <p className="text-md dark:text-gray-300">
+                <Trans
+                  i18nKey={'about'}
+                  values={{ company: about.company }}
+                  components={[
+                    <a
+                      href={about.company_url}
+                      alt={about.company}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-portakal"
+                    >
+                      link
+                    </a>,
+                  ]}
+                />
+              </p>
+            </div>
             {about.pp && (
               <img
                 src={about.pp}
                 alt="PP"
-                className="max-h-32 rounded-full mb-5 select-none shadow-lg"
+                className="max-h-32 ml-auto rounded-full select-none shadow-lg"
               />
             )}
-            <p className="text-xl font-bold">
-              {t('greeting', { name: about.name })}
-            </p>
-            <div className="flex items-center gap-x-3 my-2">
-              <p className="text-3xl font-bold">{t(about.title)} </p>
-              <span className="text-sm dark:text-gray-300">{t('from')}</span>
-            </div>
-            <p className="text-md dark:text-gray-300">
-              {t(about.about)}{' '}
-              <Trans
-                i18nKey={'currently_working'}
-                values={{ company: about.company }}
-                components={[
-                  <a
-                    href={about.company_url}
-                    alt={about.company}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="text-portakal"
-                  >
-                    link
-                  </a>,
-                ]}
-              />
-              .
-            </p>
-          </>
+          </div>
         )}
         <div className="flex items-center mt-4">
-          <Social iconClassName="mx-2" />
+          <Social iconClassName="mr-4" />
         </div>
       </section>
       <Skills />

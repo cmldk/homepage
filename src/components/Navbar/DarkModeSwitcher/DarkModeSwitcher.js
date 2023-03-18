@@ -25,13 +25,13 @@ export default function DarkModeSwitcher() {
         <span className="dark-mode-icon cursor-pointer mx-2 sm:mx-3 select-none">
           {darkSide ? (
             <Icon
-              iconName={about.moon}
+              iconName={'BsFillMoonFill'}
               className={'h-4 w-4 text-dark dark:text-light'}
               onClick={toggleDarkMode}
             />
           ) : (
             <Icon
-              iconName={about.sun}
+              iconName={'BsFillSunFill'}
               className={'h-4 w-4 text-dark dark:text-light'}
               onClick={toggleDarkMode}
             />
