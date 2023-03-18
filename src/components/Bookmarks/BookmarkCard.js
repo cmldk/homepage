@@ -6,22 +6,20 @@ function BookmarkCard({ bookmark }) {
   const { i18n } = useTranslation();
 
   const getTags = () => {
-    return bookmark.tag
-      .split(';')
-      .sort()
-      .map((tag) => (
-        <span
-          key={tag}
-          className="max-w-14 text-gray-400 text-xs pr-2 truncate inline-block"
-        >
-          {tag}
-        </span>
-      ));
+    const tags = bookmark.tag.replaceAll(';', ', ');
+    return (
+      <span className="text-xs text-portakal uppercase flex-1 truncate">
+        {tags}
+      </span>
+    );
   };
 
   return (
     bookmark.title && (
       <article className="py-4">
+        {bookmark.tag && (
+          <div className="flex items-center text-gray-400">{getTags()}</div>
+        )}
         <p className="flex font-semibold text-dark dark:text-light text-lg">
           <a
             href={bookmark.url}
@@ -32,9 +30,6 @@ function BookmarkCard({ bookmark }) {
             {bookmark.title}
           </a>
         </p>
-        {bookmark.tag && (
-          <div className="flex items-center text-gray-400">{getTags()}</div>
-        )}
         <div className="flex items-center space-x-2 text-xs text-gray-400 mt-2">
           <span>{new URL(bookmark.url).hostname}</span>
           <span>•</span>

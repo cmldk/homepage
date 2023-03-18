@@ -35,7 +35,7 @@ export default function Projects() {
                     target="_blank"
                     rel="noreferrer"
                   >
-                    <img src={starSrc} alt={'Github Stars'} className="h-6" />
+                    <img src={starSrc} alt={'Github Stars'} className="h-5" />
                   </a>
                 </span>
               </div>

@@ -20,7 +20,7 @@ const Social = ({ iconClassName }) => {
             <Icon
               iconName={data.icon}
               className={
-                'cursor-pointer text-dark dark:text-gray-400 text-lg hover:scale-110 transition duration-200'
+                'cursor-pointer text-dark dark:text-gray-400 text-lg hover:translate-y-[-3px] transition duration-200'
               }
             />
           </a>

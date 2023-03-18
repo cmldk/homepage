@@ -20,13 +20,13 @@ export default function About() {
                 className="max-h-32 rounded-full mb-5 select-none shadow-lg"
               />
             )}
-            <p className="text-3xl font-bold">
+            <p className="text-xl font-bold">
               {t('greeting', { name: about.name })}
             </p>
-            <p className="text-xl my-2">
-              {t(about.title)}{' '}
+            <div className="flex items-center gap-x-3 my-2">
+              <p className="text-3xl font-bold">{t(about.title)} </p>
               <span className="text-sm dark:text-gray-300">{t('from')}</span>
-            </p>
+            </div>
             <p className="text-md dark:text-gray-300">
               {t(about.about)}{' '}
               <Trans
