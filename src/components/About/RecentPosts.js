@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { useData } from '../../DataProvider';
-import { slugify } from '../../helper/helper';
+import { slugify } from '../../lib/helper';
 
 export default function RecentPosts() {
   const { t } = useTranslation();

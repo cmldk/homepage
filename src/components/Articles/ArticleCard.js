@@ -2,7 +2,7 @@ import { format } from 'date-fns';
 import * as Locales from 'date-fns/locale';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import { ARTICLE_DATE_FORMAT } from '../../helper/constants';
+import { ARTICLE_DATE_FORMAT } from '../../lib/constants';
 
 function ArticleCard({ article }) {
   const { i18n } = useTranslation();

@@ -9,7 +9,7 @@ module.exports = {
       },
       colors: {
         dark: '#141414',
-        light: '#e5e7eb',
+        light: '#d1d5db',
         portakal: '#ffac08',
         mandalina: '#fce8cd',
       },

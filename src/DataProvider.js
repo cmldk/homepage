@@ -1,9 +1,9 @@
 import { createContext, useState, useEffect, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import { REVALIDATE_TIME } from './helper/constants';
+import { REVALIDATE_TIME } from './lib/constants';
 import { fetchMainTable } from './api/api';
 import { parseISO } from 'date-fns';
-import { slugify, slugValidation } from './helper/helper';
+import { slugify } from './lib/helper';
 
 const DataContext = createContext();
 

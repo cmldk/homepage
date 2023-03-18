@@ -1,7 +1,7 @@
 import React from 'react';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { tomorrow } from 'react-syntax-highlighter/dist/esm/styles/prism';
-import { slugify } from '../../helper/helper';
+import { slugify } from '../../lib/helper';
 
 function a({ children, ...props }) {
   return (

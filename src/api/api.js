@@ -1,4 +1,4 @@
-import { BASE_URL, MAIN_TABLE_ID } from '../helper/constants';
+import { BASE_URL, MAIN_TABLE_ID } from '../lib/constants';
 import { setDefaultTranslation } from '../i18n/i18n';
 
 export const fetchMainTable = async (handleTableResponse, setRevalidate) => {

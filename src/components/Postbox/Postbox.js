@@ -1,7 +1,7 @@
 import { Fragment, useState } from 'react';
 import { Popover, Transition } from '@headlessui/react';
 import { useTranslation } from 'react-i18next';
-import { BASE_URL } from '../../helper/constants';
+import { BASE_URL } from '../../lib/constants';
 import { useData } from '../../DataProvider';
 import Icon from '../Base/Icon/Icon';
 

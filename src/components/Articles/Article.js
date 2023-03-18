@@ -6,7 +6,7 @@ import Markdown from 'react-markdown';
 import MDComponents from './MDComponents';
 import './Article.css';
 import { format } from 'date-fns';
-import { ARTICLE_DATE_FORMAT } from '../../helper/constants';
+import { ARTICLE_DATE_FORMAT } from '../../lib/constants';
 import * as Locales from 'date-fns/locale';
 import Icon from '../Base/Icon/Icon';
 
