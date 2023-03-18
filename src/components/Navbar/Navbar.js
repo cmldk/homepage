@@ -1,6 +1,5 @@
 import { Popover } from '@headlessui/react';
 import DarkModeSwitcher from './DarkModeSwitcher/DarkModeSwitcher';
-import './Navbar.css';
 import { Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import LanguageSwitcher from './LanguageSwitcher/LanguageSwitcher';

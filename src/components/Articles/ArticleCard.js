@@ -26,7 +26,7 @@ function ArticleCard({ article }) {
         key={article.id}
         className="flex flex-col items-start justify-between py-6"
       >
-        <div className="flex w-full items-center text-xs truncate">
+        <div className="flex w-full items-center text-sm truncate">
           {article.tag && getTags()}
           <time dateTime={article.published_at} className="text-gray-400">
             {getDate()}

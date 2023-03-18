@@ -3,13 +3,14 @@ import { useData } from '../../DataProvider';
 import Social from '../Social/Social';
 import RecentPosts from './RecentPosts';
 import SideProjects from './SideProjects';
+import Skills from './Skills';
 
 export default function About() {
   const { t } = useTranslation();
   const { about } = useData();
 
   return (
-    <div className="text-dark dark:text-light mt-6 flex flex-col gap-y-12">
+    <div className="text-dark dark:text-light mt-6 flex flex-col gap-y-16">
       <section className="max-w-xl font-['regular']">
         {about && (
           <>
@@ -49,11 +50,19 @@ export default function About() {
           </>
         )}
         <div className="flex items-center mt-4">
-          <Social iconClassName="mr-4" />
+          <Social iconClassName="mx-2" />
         </div>
       </section>
-      <RecentPosts />
-      <SideProjects />
+      <Skills />
+      <span className="flex flex-col gap-y-8">
+        <RecentPosts />
+        <SideProjects />
+        <div className="flex items-center justify-center">
+          <div className="w-1.5 h-1.5 rounded-full dark:bg-gray-300 bg-dark"></div>
+          <div className="mx-1.5 w-1.5 h-1.5 rounded-full dark:bg-gray-300 bg-dark"></div>
+          <div className="w-1.5 h-1.5 rounded-full dark:bg-gray-300 bg-dark"></div>
+        </div>
+      </span>
     </div>
   );
 }

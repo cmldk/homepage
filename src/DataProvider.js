@@ -21,6 +21,7 @@ const DataProvider = ({ children, pathName }) => {
   const [bookmarks, setBookmarks] = useState();
   const [articles, setArticles] = useState();
   const [projects, setProjects] = useState();
+  const [skills, setSkills] = useState();
   const [suggestion, setSuggestion] = useState();
 
   useEffect(() => {
@@ -122,6 +123,10 @@ const DataProvider = ({ children, pathName }) => {
     setProjects(data.filter((row) => row.display));
   };
 
+  const _setSkills = (data) => {
+    setSkills(data.filter((row) => row.display));
+  };
+
   const _setSuggestion = (data) => {
     setSuggestion(data[0]);
   };
@@ -135,6 +140,7 @@ const DataProvider = ({ children, pathName }) => {
     suggestion: _setSuggestion,
     articles: _setArticles,
     projects: _setProjects,
+    skills: _setSkills,
   };
 
   const setLoading = (value) => {
@@ -153,6 +159,7 @@ const DataProvider = ({ children, pathName }) => {
         suggestion,
         articles,
         projects,
+        skills,
       }}
     >
       {children}
@@ -171,6 +178,7 @@ const useData = () => {
     articles,
     suggestion,
     projects,
+    skills,
   } = useContext(DataContext);
   return {
     social,
@@ -182,6 +190,7 @@ const useData = () => {
     suggestion,
     articles,
     projects,
+    skills,
   };
 };
 

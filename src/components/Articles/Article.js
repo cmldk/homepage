@@ -99,7 +99,7 @@ export default function Article() {
         >
           {article.content}
         </Markdown>
-        <div className="flex items-center gap-x-4 text-xs truncate mt-12">
+        <div className="flex items-center gap-x-4 text-sm truncate mt-12">
           <time
             dateTime={article.published_at}
             className="text-gray-400 flex-1"

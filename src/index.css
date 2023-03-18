@@ -68,3 +68,11 @@ body * {
   opacity: 0;
   transition: opacity 250ms;
 }
+
+@media screen and (max-width: 400px) {
+
+  .logo-wrapper,
+  .logo {
+    display: none;
+  }
+}

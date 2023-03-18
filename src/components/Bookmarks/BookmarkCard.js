@@ -16,7 +16,7 @@ function BookmarkCard({ bookmark }) {
 
   return (
     bookmark.title && (
-      <article className="py-4">
+      <article className="flex flex-col gap-1 py-4">
         {bookmark.tag && (
           <div className="flex items-center text-gray-400">{getTags()}</div>
         )}
@@ -30,7 +30,7 @@ function BookmarkCard({ bookmark }) {
             {bookmark.title}
           </a>
         </p>
-        <div className="flex items-center space-x-2 text-xs text-gray-400 mt-2">
+        <div className="flex items-center space-x-2 text-xs text-gray-400">
           <span>{new URL(bookmark.url).hostname}</span>
           <span>•</span>
           <span>

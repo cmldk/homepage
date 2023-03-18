@@ -28,14 +28,15 @@ export default function RecentPosts() {
         <div className="grid grid-cols-3 gap-4">
           {recentPosts.map((post) => (
             <Link
+              key={post.row_id}
               to={`/articles/${slugify(post.title)}`}
-              className="p-3 border-4 border-mandalina hover:border-portakal dark:border-gray-700 dark:hover:border-portakal rounded-md"
+              className="p-3 border-4 border-gray-200 hover:border-portakal dark:border-gray-700 dark:hover:border-portakal rounded-md"
             >
               <p className="text-lg font-['semibold']">{post.title}</p>
               <p className="text-sm font-['regular'] font-semibold uppercase my-1">
                 {t('min_read', { time: post.time })}
               </p>
-              <p className="text-sm line-clamp-5 dark:text-gray-400">
+              <p className="text-sm line-clamp-4 dark:text-gray-400">
                 {post.description}
               </p>
             </Link>
