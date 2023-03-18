@@ -1,8 +1,8 @@
 import { Fragment, useState } from 'react';
 import { Popover, Transition } from '@headlessui/react';
-import { useData } from '../DataProvider/DataProvider';
 import { useTranslation } from 'react-i18next';
 import { BASE_URL } from '../../helper/constants';
+import { useData } from '../../DataProvider';
 import Icon from '../Base/Icon/Icon';
 
 export default function Postbox() {
@@ -56,10 +56,7 @@ export default function Postbox() {
       <div className="fixed bottom-5 right-5 font-['regular']">
         <Popover className="relative inline-block">
           <Popover.Button className="p-4 flex items-center bg-portakal hover:bg-orange-400 rounded-full shadow">
-            <Icon
-              iconName={suggestion.button_icon}
-              className={'h-7 w-7 text-dark'}
-            />
+            <Icon iconName={'BsMailbox2'} className={'h-7 w-7 text-dark'} />
           </Popover.Button>
 
           <Transition
@@ -71,12 +68,12 @@ export default function Postbox() {
             leaveFrom="opacity-100"
             leaveTo="opacity-0 translate-y-full"
           >
-            <Popover.Panel className="absolute z-10 -translate-y-full -mt-20 -translate-x-[16rem] w-80">
+            <Popover.Panel className="absolute z-20 -translate-y-full -mt-20 -translate-x-[16rem] w-80">
               {postboxSended ? (
                 <div className="overflow-hidden shadow sm:rounded-md">
                   <div className="bg-gray-200 dark:bg-gray-700 dark:text-gray-200 px-4 py-3 flex items-center">
                     <Icon
-                      iconName={suggestion.sended_icon}
+                      iconName={'BsCheckCircleFill'}
                       className={'h-16 w-16 dark:text-gray-200 mr-2'}
                     />
                     <p>{t('postbox_thanks')}</p>
