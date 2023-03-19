@@ -9,9 +9,7 @@ function ArticleCard({ article }) {
 
   const getTags = () => {
     const tags = article.tag.replaceAll(';', ', ');
-    return (
-      <span className="text-sm text-portakal uppercase flex-1">{tags}</span>
-    );
+    return <span className="text-sm text-portakal uppercase">{tags}</span>;
   };
 
   const getDate = () => {
@@ -26,7 +24,7 @@ function ArticleCard({ article }) {
         key={article.id}
         className="flex flex-col items-start justify-between py-6"
       >
-        <div className="flex w-full items-center text-sm truncate">
+        <div className="flex w-full items-center justify-between text-sm flex-wrap">
           {article.tag && getTags()}
           <time dateTime={article.published_at} className="text-gray-400">
             {getDate()}
