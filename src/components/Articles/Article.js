@@ -48,7 +48,9 @@ export default function Article() {
       const onWindowLoad = () => {
         const anchorEl = document.getElementById(anchor);
         if (anchorEl) {
-          anchorEl.scrollIntoView({ behavior: 'smooth' });
+          const offsetTop =
+            anchorEl.getBoundingClientRect().top + window.pageYOffset - 16;
+          window.scrollTo({ top: offsetTop, behavior: 'smooth' });
         }
       };
 

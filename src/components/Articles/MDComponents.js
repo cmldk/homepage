@@ -3,7 +3,7 @@ import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { tomorrow } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { slugify } from '../../lib/helper';
 
-function a({ children, ...props }) {
+function a({ children, node, ...props }) {
   return (
     <a
       className="text-blue-600 dark:text-blue-400 hover:underline font-['regular']"
@@ -16,7 +16,7 @@ function a({ children, ...props }) {
   );
 }
 
-function strong({ children, ...props }) {
+function strong({ children, node, ...props }) {
   return (
     <strong className="font-semibold font-['regular']" {...props}>
       {children}
@@ -24,7 +24,7 @@ function strong({ children, ...props }) {
   );
 }
 
-function hr(props) {
+function hr({ node, ...props }) {
   return (
     <hr
       className="my-14 border-0 border-b border-black opacity-10 dark:border-white"
@@ -33,7 +33,7 @@ function hr(props) {
   );
 }
 
-function ul(props) {
+function ul({ node, ...props }) {
   return (
     <ul
       className="list-inside list-disc space-y-3 font-['regular']"
@@ -42,7 +42,7 @@ function ul(props) {
   );
 }
 
-function ol(props) {
+function ol({ node, ...props }) {
   return (
     <ol
       className="list-inside list-decimal space-y-3 font-['regular']"
@@ -51,7 +51,7 @@ function ol(props) {
   );
 }
 
-function blockquote(props) {
+function blockquote({ node, ...props }) {
   return (
     <blockquote
       className="bg-mandalina text-sm text-dark my-6 mx-auto border-[1px] border-portakal border-l-[1px] border-l-portakal border-l-[5px] rounded-lg py-2 px-4 font-['regular']"
@@ -60,11 +60,11 @@ function blockquote(props) {
   );
 }
 
-function p(props) {
+function p({ node, ...props }) {
   return <p className="my-2 font-['regular'] leading-8" {...props} />;
 }
 
-function h1({ children, ...props }) {
+function h1({ children, node, ...props }) {
   return (
     <h1
       className="text-4xl my-8 text-dark dark:text-light font-['semibold']"
@@ -75,7 +75,7 @@ function h1({ children, ...props }) {
   );
 }
 
-function h2({ children, ...props }) {
+function h2({ children, node, ...props }) {
   const value = children[0];
   return (
     <h2
@@ -91,7 +91,7 @@ function h2({ children, ...props }) {
   );
 }
 
-function h3({ children, ...props }) {
+function h3({ children, node, ...props }) {
   const value = children[0];
 
   return (
@@ -108,7 +108,7 @@ function h3({ children, ...props }) {
   );
 }
 
-function h4({ children, ...props }) {
+function h4({ children, node, ...props }) {
   const value = children[0];
 
   return (
@@ -125,7 +125,7 @@ function h4({ children, ...props }) {
   );
 }
 
-function h5({ children, ...props }) {
+function h5({ children, node, ...props }) {
   const value = children[0];
 
   return (
@@ -142,13 +142,13 @@ function h5({ children, ...props }) {
   );
 }
 
-function img({ src, alt, ...props }) {
+function img({ src, alt, node, ...props }) {
   return (
     <figure className="my-6 text-center">
       <a className="inline-block" href={src} target="_blank" rel="noreferrer">
         <img src={src} alt={alt} className="mx-auto max-h-[400px]" {...props} />
       </a>
-      <figcaption className="text-sm text-gray-600 dark:text-gray-400 mt-3">
+      <figcaption className="text-sm text-gray-600 dark:text-gray-400">
         {alt}
       </figcaption>
     </figure>
