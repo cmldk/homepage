@@ -17,7 +17,6 @@ import { DataProvider } from './DataProvider';
 import Articles from './components/Articles/Articles';
 import Article from './components/Articles/Article';
 import Projects from './components/Projects/Projects';
-import Postbox from './components/Postbox/Postbox';
 
 const routes = [
   {
@@ -67,7 +66,6 @@ function AppRoutes() {
   return (
     <DataProvider pathName={name}>
       <Loading />
-      {/* <Postbox /> */}
       <div
         className="dark:bg-dark"
         style={{ height: '100%', minHeight: '100vh' }}

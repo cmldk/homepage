@@ -85,11 +85,7 @@ export default function Article() {
 
   const getTags = () => {
     const tags = article.tag.replaceAll(';', ', ');
-    return (
-      <span className="text-sm text-portakal uppercase flex-1 text-right">
-        {tags}
-      </span>
-    );
+    return <span className="text-sm text-portakal uppercase">{tags}</span>;
   };
 
   return (
@@ -101,14 +97,11 @@ export default function Article() {
         >
           {article.content}
         </Markdown>
-        <div className="flex items-center gap-x-4 text-sm truncate mt-12">
-          <time
-            dateTime={article.published_at}
-            className="text-gray-400 flex-1"
-          >
+        <div className="flex w-full items-center justify-between text-sm flex-wrap mt-12">
+          {article.tag && getTags()}
+          <time dateTime={article.published_at} className="text-gray-400">
             {getDate()}
           </time>
-          {article.tag && getTags()}
         </div>
         <div
           className={`${

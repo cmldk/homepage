@@ -40,10 +40,10 @@ export default function Articles() {
       searchedArticles.map((article) => {
         return (
           article.title && (
-            <>
+            <span key={article.row_id}>
               <ArticleCard article={article} />
               <div className="h-px bg-gradient-to-r opacity-75 from-gray-300 dark:from-gray-600 to-transparent last-of-type:hidden"></div>
-            </>
+            </span>
           )
         );
       })

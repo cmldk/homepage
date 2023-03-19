@@ -18,7 +18,7 @@ export default function Projects() {
             const techs = project.tech.replaceAll(';', ', ');
 
             return (
-              <div className="flex flex-col flex-wrap">
+              <div key={project.row_id} className="flex flex-col flex-wrap">
                 <span className="text-sm text-portakal uppercase">{techs}</span>
                 <a href={githubLink} target="_blank" rel="noreferrer">
                   <h3 className="mt-1 mb-4 text-lg text-dark dark:text-light font-semibold leading-6">
