@@ -12,13 +12,10 @@ export const fetchMainTable = async (handleTableResponse, setRevalidate) => {
     .then((jsonData) => {
       // fetch given necessary tables data
       jsonData.data.forEach((row) => {
-        if (row.key && handleTableResponse.hasOwnProperty(row.key)) {
+        const setState = handleTableResponse(row.key);
+        if (row.key && setState) {
           if (row.key === 'translation') hasTranslationTable = true;
-          fetchSingleTableData(
-            row.table_id,
-            handleTableResponse[row.key],
-            row.url_param
-          );
+          fetchSingleTableData(row.table_id, setState, row.url_param);
         }
       });
 

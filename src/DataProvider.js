@@ -1,4 +1,10 @@
-import { createContext, useState, useEffect, useContext } from 'react';
+import {
+  createContext,
+  useState,
+  useEffect,
+  useContext,
+  useCallback,
+} from 'react';
 import { useTranslation } from 'react-i18next';
 import { REVALIDATE_TIME } from './lib/constants';
 import { fetchMainTable } from './api/api';
@@ -29,24 +35,7 @@ const DataProvider = ({ children, pathName }) => {
     if (about && i18n && i18n?.languages?.length > 0) {
       document.title = `${t(pathName)} - ${about.name} ${about.surname}`;
     }
-  }, [t, pathName, about]);
-
-  useEffect(() => {
-    setLoading(true);
-    if (firstRender) {
-      fetchMainTable(handleTableResponse);
-      firstRender = false;
-      // localStorage.removeItem('postbox');
-    }
-
-    const interval = setInterval(() => {
-      fetchMainTable(handleTableResponse, setRevalidate);
-    }, REVALIDATE_TIME);
-
-    return () => {
-      clearInterval(interval);
-    };
-  }, []);
+  }, [t, pathName, about, i18n]);
 
   useEffect(() => {
     // set preferred language only first fetch
@@ -58,7 +47,7 @@ const DataProvider = ({ children, pathName }) => {
         i18n.changeLanguage(languages[0]);
       }
     }
-  }, [languages, about]);
+  }, [languages, about, i18n, revalidate]);
 
   const _setAbout = (data) => {
     setAbout(data[0]);
@@ -72,29 +61,32 @@ const DataProvider = ({ children, pathName }) => {
     setHeader(data.filter((row) => row.display).map((row) => row.key));
   };
 
-  const setResources = async (data) => {
-    // get languages
-    const initialLanguages = Object.keys(data[0]).filter(
-      (key) => key !== 'key' && key !== 'row_id'
-    );
+  const setResources = useCallback(
+    async (data) => {
+      // get languages
+      const initialLanguages = Object.keys(data[0]).filter(
+        (key) => key !== 'key' && key !== 'row_id'
+      );
 
-    // generate dictionary object
-    let dictionary = {};
-    initialLanguages.forEach((language) => {
-      dictionary[language] = {};
-      data.forEach((row) => {
-        dictionary[language][row.key] = row[language];
+      // generate dictionary object
+      let dictionary = {};
+      initialLanguages.forEach((language) => {
+        dictionary[language] = {};
+        data.forEach((row) => {
+          dictionary[language][row.key] = row[language];
+        });
+
+        // set language to i18n
+        i18n.addResourceBundle(language, 'translation', dictionary[language]);
       });
 
-      // set language to i18n
-      i18n.addResourceBundle(language, 'translation', dictionary[language]);
-    });
-
-    setLanguages(initialLanguages);
-    setTimeout(() => {
-      setLoading(false);
-    }, 500);
-  };
+      setLanguages(initialLanguages);
+      setTimeout(() => {
+        setLoading(false);
+      }, 500);
+    },
+    [i18n]
+  );
 
   const _setBookmarks = (data) => {
     setBookmarks(data);
@@ -131,17 +123,40 @@ const DataProvider = ({ children, pathName }) => {
     setSuggestion(data[0]);
   };
 
-  const handleTableResponse = {
-    about: _setAbout,
-    social: _setSocial,
-    header: _setHeader,
-    translation: setResources,
-    bookmarks: _setBookmarks,
-    suggestion: _setSuggestion,
-    articles: _setArticles,
-    projects: _setProjects,
-    skills: _setSkills,
-  };
+  const handleTableResponse = useCallback(
+    (key) => {
+      const setState = {
+        about: _setAbout,
+        social: _setSocial,
+        header: _setHeader,
+        translation: setResources,
+        bookmarks: _setBookmarks,
+        suggestion: _setSuggestion,
+        articles: _setArticles,
+        projects: _setProjects,
+        skills: _setSkills,
+      };
+      return setState[key];
+    },
+    [setResources]
+  );
+
+  useEffect(() => {
+    setLoading(true);
+    if (firstRender) {
+      fetchMainTable(handleTableResponse);
+      firstRender = false;
+      // localStorage.removeItem('postbox');
+    }
+
+    const interval = setInterval(() => {
+      fetchMainTable(handleTableResponse, setRevalidate);
+    }, REVALIDATE_TIME);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, [handleTableResponse]);
 
   const setLoading = (value) => {
     setIsLoading(value);
