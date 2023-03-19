@@ -74,7 +74,7 @@ export default function Header() {
         )}
       </nav>
       <nav className="flex justify-between sm:hidden mx-auto items-center py-2">
-        <span className="flex-1 logo-wrapper">
+        <span>
           <a href="/" className="-m-1.5 p-1.5 inline-flex logo select-none">
             {about && (
               <>
@@ -90,9 +90,9 @@ export default function Header() {
         </span>
         {header && (
           <>
-            <span className="flex items-center mb-2 sm:mb-0">
-              {header.includes('darkmode') && <DarkModeSwitcher />}
+            <span className="flex items-center gap-x-3">
               {header.includes('translation') && <LanguageSwitcher />}
+              {header.includes('darkmode') && <DarkModeSwitcher />}
             </span>
           </>
         )}

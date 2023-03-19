@@ -97,6 +97,7 @@ const DataProvider = ({ children, pathName }) => {
       .map((a) => {
         if (a.display && a.title && a.content && a.published_at) {
           a.slug = slugify(a.title);
+          a.published_at = parseISO(a.published_at);
           delete a.images;
           return a;
         }
