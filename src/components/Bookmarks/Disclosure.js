@@ -41,7 +41,7 @@ const ListDisclosure = ({ date, bookmarks }) => {
       >
         {bookmarks.map((bookmark) => {
           return (
-            bookmark.url && (
+            bookmark.link && (
               <>
                 <BookmarkCard bookmark={bookmark} />
                 <div className="h-px bg-gradient-to-r opacity-75 from-gray-300 dark:from-gray-600 to-transparent last-of-type:hidden"></div>

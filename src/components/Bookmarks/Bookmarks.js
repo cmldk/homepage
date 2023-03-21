@@ -25,8 +25,8 @@ export default function Bookmarks() {
       const foundedSearchedItems = bookmarks.filter(
         (b) =>
           b.title.includes(searchValue) ||
-          b.tag.includes(searchValue) ||
-          b.url.includes(searchValue)
+          b.tags.includes(searchValue) ||
+          b.link.includes(searchValue)
       );
       const groupByBookmarks = bookmarkGroupByMounth(foundedSearchedItems);
       setSearchedBookmarks(groupByBookmarks);
@@ -75,7 +75,7 @@ export default function Bookmarks() {
     } else {
       const dates = sortedDates();
       for (let index = 0; index < dates.length; index++) {
-        if (bookmarkCount >= initialDisplayNumber) {
+        if (bookmarkCount > initialDisplayNumber) {
           break;
         }
 
@@ -101,7 +101,7 @@ export default function Bookmarks() {
             <ListDisclosure date={date} bookmarks={filteredBookmarks[date]} />
           </div>
         ))}
-        {!displayAll && bookmarkCount >= initialDisplayNumber && (
+        {!displayAll && (
           <div className="flex items-center mt-12">
             <BookmarkButton onClick={() => setDisplayAll(true)}>
               {t('bookmark_show_all')}

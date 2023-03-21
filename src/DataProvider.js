@@ -7,7 +7,7 @@ import {
 } from 'react';
 import { useTranslation } from 'react-i18next';
 import { REVALIDATE_TIME } from './lib/constants';
-import { fetchMainTable } from './api/api';
+import { fetchBookmarks, fetchMainTable } from './api/api';
 import { parseISO } from 'date-fns';
 import { slugify } from './lib/helper';
 
@@ -131,7 +131,6 @@ const DataProvider = ({ children, pathName }) => {
         social: _setSocial,
         header: _setHeader,
         translation: setResources,
-        bookmarks: _setBookmarks,
         suggestion: _setSuggestion,
         articles: _setArticles,
         projects: _setProjects,
@@ -146,6 +145,7 @@ const DataProvider = ({ children, pathName }) => {
     setLoading(true);
     if (firstRender) {
       fetchMainTable(handleTableResponse);
+      fetchBookmarks(_setBookmarks);
       firstRender = false;
       // localStorage.removeItem('postbox');
     }
