@@ -33,3 +33,24 @@ const fetchSingleTableData = async (tableID, setResponse, urlParam) => {
     .then((jsonData) => setResponse(jsonData.data))
     .catch((error) => console.error(error));
 };
+
+export const fetchBookmarks = async (setResponse) => {
+  const clientSecret = process.env.REACT_APP_RAINDROP_CLIENT_SECRET;
+  const collectionId = process.env.REACT_APP_RAINDROP_COLLECTION_ID;
+  const apiUrl = `https://api.raindrop.io/rest/v1/raindrops/${collectionId}`;
+  const headers = {
+    'Content-Type': 'application/json',
+    Authorization: `Bearer ${clientSecret}`,
+  };
+  const requestUrl = new URL(apiUrl);
+
+  const response = await fetch(requestUrl, { headers });
+  const data = await response.json();
+
+  setResponse(
+    data.items.map((item) => {
+      const { _id, created, link, title, domain, tags } = item;
+      return { _id, created, link, title, domain, tags };
+    })
+  );
+};

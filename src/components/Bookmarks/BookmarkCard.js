@@ -6,28 +6,31 @@ function BookmarkCard({ bookmark }) {
   const { i18n } = useTranslation();
 
   const getTags = () => {
-    const tags = bookmark.tag.replaceAll(';', ', ');
+    const tags = bookmark.tags.join(', ');
     return <span className="text-xs text-portakal uppercase">{tags}</span>;
   };
 
   return (
     bookmark.title && (
-      <article className="flex flex-col overflow-hidden gap-1 py-4">
-        {bookmark.tag && (
+      <article
+        key={bookmark._id}
+        className="flex flex-col overflow-hidden gap-1 py-4"
+      >
+        {bookmark.tags && (
           <div className="flex items-center flex-wrap text-gray-400">
             {getTags()}
           </div>
         )}
         <p className="flex font-semibold text-dark dark:text-light text-lg">
-          <a href={bookmark.url} target="_blank" rel="noreferrer">
+          <a href={bookmark.link} target="_blank" rel="noreferrer">
             {bookmark.title}
           </a>
         </p>
         <div className="flex items-center space-x-2 text-xs text-gray-400">
-          <span>{new URL(bookmark.url).hostname}</span>
+          <span>{new URL(bookmark.link).hostname}</span>
           <span>•</span>
           <span>
-            {formatDistanceToNowStrict(parseISO(bookmark.created_at), {
+            {formatDistanceToNowStrict(parseISO(bookmark.created), {
               addSuffix: true,
               locale: Locales[i18n.language],
             })}
