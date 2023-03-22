@@ -109,7 +109,7 @@ export default function Article() {
           } fixed bottom-5 transition duration-300 right-5 p-4 flex items-center bg-mandalina hover:bg-portakal rounded-full shadow cursor-pointer`}
           onClick={scrollToTop}
         >
-          <Icon iconName={'BsArrowUp'} className={'h-7 w-7 text-dark'} />
+          <Icon iconName={'BsChevronUp'} className={'h-7 w-7 text-dark'} />
         </div>
       </div>
     )

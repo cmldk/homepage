@@ -102,7 +102,7 @@ export default function Bookmarks() {
             <ListDisclosure date={date} bookmarks={filteredBookmarks[date]} />
           </div>
         ))}
-        {!displayAll && (
+        {!displayAll && bookmarkCount >= initialDisplayNumber && (
           <div className="flex items-center mt-12">
             <BookmarkButton onClick={() => setDisplayAll(true)}>
               {t('bookmark_show_all')}
