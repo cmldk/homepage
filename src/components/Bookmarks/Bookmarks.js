@@ -22,11 +22,12 @@ export default function Bookmarks() {
 
   useEffect(() => {
     if (searchValue) {
+      const val = searchValue.toLowerCase();
       const foundedSearchedItems = bookmarks.filter(
         (b) =>
-          b.title.includes(searchValue) ||
-          b.tags.includes(searchValue) ||
-          b.link.includes(searchValue)
+          b.title.includes(val) ||
+          b.tags.some((tag) => tag.includes(val)) ||
+          b.link.includes(val)
       );
       const groupByBookmarks = bookmarkGroupByMounth(foundedSearchedItems);
       setSearchedBookmarks(groupByBookmarks);
