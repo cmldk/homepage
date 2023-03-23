@@ -22,11 +22,12 @@ export default function Bookmarks() {
 
   useEffect(() => {
     if (searchValue) {
+      const val = searchValue.toLowerCase();
       const foundedSearchedItems = bookmarks.filter(
         (b) =>
-          b.title.includes(searchValue) ||
-          b.tags.includes(searchValue) ||
-          b.link.includes(searchValue)
+          b.title.includes(val) ||
+          b.tags.some((tag) => tag.includes(val)) ||
+          b.link.includes(val)
       );
       const groupByBookmarks = bookmarkGroupByMounth(foundedSearchedItems);
       setSearchedBookmarks(groupByBookmarks);
@@ -101,7 +102,7 @@ export default function Bookmarks() {
             <ListDisclosure date={date} bookmarks={filteredBookmarks[date]} />
           </div>
         ))}
-        {!displayAll && (
+        {!displayAll && bookmarkCount >= initialDisplayNumber && (
           <div className="flex items-center mt-12">
             <BookmarkButton onClick={() => setDisplayAll(true)}>
               {t('bookmark_show_all')}

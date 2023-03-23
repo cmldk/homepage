@@ -35,9 +35,10 @@ const fetchSingleTableData = async (tableID, setResponse, urlParam) => {
 };
 
 export const fetchBookmarks = async (setResponse) => {
+  const sort = '-created';
   const clientSecret = process.env.REACT_APP_RAINDROP_CLIENT_SECRET;
   const collectionId = process.env.REACT_APP_RAINDROP_COLLECTION_ID;
-  const apiUrl = `https://api.raindrop.io/rest/v1/raindrops/${collectionId}`;
+  const apiUrl = `https://api.raindrop.io/rest/v1/raindrops/${collectionId}?sort=${sort}`;
   const headers = {
     'Content-Type': 'application/json',
     Authorization: `Bearer ${clientSecret}`,
