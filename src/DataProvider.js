@@ -6,20 +6,16 @@ import {
   useCallback,
 } from 'react';
 import { useTranslation } from 'react-i18next';
-import { REVALIDATE_TIME } from './lib/constants';
 import { fetchBookmarks, fetchMainTable } from './api/api';
 import { parseISO } from 'date-fns';
 import { slugify } from './lib/helper';
 
 const DataContext = createContext();
 
-let firstRender = true;
-
 const DataProvider = ({ children, pathName }) => {
   const { i18n, t } = useTranslation();
 
   const [isLoading, setIsLoading] = useState(false);
-  const [revalidate, setRevalidate] = useState(false);
   const [languages, setLanguages] = useState([]);
   const [header, setHeader] = useState();
   const [social, setSocial] = useState();
@@ -39,7 +35,7 @@ const DataProvider = ({ children, pathName }) => {
 
   useEffect(() => {
     // set preferred language only first fetch
-    if (!revalidate && about) {
+    if (about) {
       let preferredLang = about.start_language;
       if (preferredLang && languages.includes(preferredLang)) {
         i18n.changeLanguage(preferredLang);
@@ -47,7 +43,7 @@ const DataProvider = ({ children, pathName }) => {
         i18n.changeLanguage(languages[0]);
       }
     }
-  }, [languages, about, i18n, revalidate]);
+  }, [languages, about, i18n]);
 
   const _setAbout = (data) => {
     setAbout(data[0]);
@@ -143,20 +139,9 @@ const DataProvider = ({ children, pathName }) => {
 
   useEffect(() => {
     setLoading(true);
-    if (firstRender) {
-      fetchMainTable(handleTableResponse);
-      fetchBookmarks(_setBookmarks);
-      firstRender = false;
-      // localStorage.removeItem('postbox');
-    }
-
-    const interval = setInterval(() => {
-      fetchMainTable(handleTableResponse, setRevalidate);
-    }, REVALIDATE_TIME);
-
-    return () => {
-      clearInterval(interval);
-    };
+    fetchMainTable(handleTableResponse);
+    fetchBookmarks(_setBookmarks);
+    // localStorage.removeItem('postbox');
   }, [handleTableResponse]);
 
   const setLoading = (value) => {
