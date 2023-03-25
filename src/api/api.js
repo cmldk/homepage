@@ -1,7 +1,7 @@
 import { BASE_URL, MAIN_TABLE_ID } from '../lib/constants';
 import { setDefaultTranslation } from '../i18n/i18n';
 
-export const fetchMainTable = async (handleTableResponse, setRevalidate) => {
+export const fetchMainTable = async (handleTableResponse) => {
   const API_MAIN_RETABLE_URL = `${BASE_URL}/${MAIN_TABLE_ID}/json`;
 
   // if translation table not exist, then we will set default locale en.json
@@ -20,7 +20,6 @@ export const fetchMainTable = async (handleTableResponse, setRevalidate) => {
       });
 
       if (!hasTranslationTable) setDefaultTranslation();
-      if (setRevalidate) setRevalidate(true);
     })
     .catch((error) => console.error(error));
 };
