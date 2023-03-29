@@ -1,11 +1,7 @@
 import { BASE_URL, MAIN_TABLE_ID } from '../lib/constants';
-import { setDefaultTranslation } from '../i18n/i18n';
 
 export const fetchMainTable = async (handleTableResponse) => {
   const API_MAIN_RETABLE_URL = `${BASE_URL}/${MAIN_TABLE_ID}/json`;
-
-  // if translation table not exist, then we will set default locale en.json
-  let hasTranslationTable = false;
 
   fetch(API_MAIN_RETABLE_URL)
     .then((response) => response.json())
@@ -14,12 +10,9 @@ export const fetchMainTable = async (handleTableResponse) => {
       jsonData.data.forEach((row) => {
         const setState = handleTableResponse(row.key);
         if (row.key && setState) {
-          if (row.key === 'translation') hasTranslationTable = true;
           fetchSingleTableData(row.table_id, setState, row.url_param);
         }
       });
-
-      if (!hasTranslationTable) setDefaultTranslation();
     })
     .catch((error) => console.error(error));
 };
