@@ -17,6 +17,7 @@ import { DataProvider } from './DataProvider';
 import Articles from './components/Articles/Articles';
 import Article from './components/Articles/Article';
 import Projects from './components/Projects/Projects';
+import Resume from './components/Resume/Resume';
 
 const routes = [
   {
@@ -47,6 +48,12 @@ const routes = [
     path: '/bookmarks',
     name: 'bookmarks',
     element: <Bookmarks />,
+    nodeRef: createRef(),
+  },
+  {
+    path: '/resume',
+    name: 'resume',
+    element: <Resume />,
     nodeRef: createRef(),
   },
   {

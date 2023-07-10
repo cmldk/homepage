@@ -17,6 +17,7 @@ export default function Header() {
     { key: 'articles', href: '/articles', title: t('articles') },
     { key: 'bookmarks', href: '/bookmarks', title: t('bookmarks') },
     { key: 'gallery', href: '/gallery', title: t('gallery') },
+    { key: 'resume', href: '/resume', title: 'Resume' },
   ];
 
   const isActive = (href) => {
