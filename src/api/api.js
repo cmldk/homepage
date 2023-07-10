@@ -7,7 +7,6 @@ export const fetchMainTable = async (handleTableResponse) => {
     .then((response) => response.json())
     .then((jsonData) => {
       // fetch given necessary tables data
-      console.log(jsonData.data);
       jsonData.data.forEach((row) => {
         const setState = handleTableResponse(row.key);
         if (row.key && setState) {
@@ -19,7 +18,6 @@ export const fetchMainTable = async (handleTableResponse) => {
 };
 
 const fetchSingleTableData = async (tableID, setResponse, urlParam) => {
-  console.log(tableID);
   const API_RETABLE_URL = `${BASE_URL}/${tableID}/json${urlParam ?? ''}`;
 
   fetch(API_RETABLE_URL)
