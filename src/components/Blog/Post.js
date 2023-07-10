@@ -91,6 +91,11 @@ export default function Post() {
   return (
     post && (
       <div className="mt-12">
+        <Icon
+          iconName={'BsArrowLeft'}
+          className={'h-7 w-7 text-dark dark:text-white cursor-pointer'}
+          onClick={() => navigate('/blog')}
+        />
         <Markdown
           className="max-w-2xl mx-auto text-md text-dark dark:text-light"
           components={MDComponents}
