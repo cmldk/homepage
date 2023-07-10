@@ -14,8 +14,8 @@ import { createRef } from 'react';
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
 import { DataProvider } from './DataProvider';
-import Articles from './components/Articles/Articles';
-import Article from './components/Articles/Article';
+import Posts from './components/Blog/Posts';
+import Post from './components/Blog/Post';
 import Projects from './components/Projects/Projects';
 import Resume from './components/Resume/Resume';
 
@@ -33,15 +33,15 @@ const routes = [
     nodeRef: createRef(),
   },
   {
-    path: '/articles',
-    name: 'articles',
-    element: <Articles />,
+    path: '/blog',
+    name: 'blog',
+    element: <Posts />,
     nodeRef: createRef(),
   },
   {
-    path: '/articles/:slug',
-    name: 'articles',
-    element: <Article />,
+    path: '/blog/:slug',
+    name: 'blog',
+    element: <Post />,
     nodeRef: createRef(),
   },
   {

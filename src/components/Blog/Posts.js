@@ -2,30 +2,30 @@ import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useData } from '../../DataProvider';
 import SearchInput from '../Base/SearchInput/SearchInput';
-import ArticleCard from './ArticleCard';
+import PostCard from './PostCard';
 
 let searchTimeout = null;
 
-export default function Articles() {
+export default function Posts() {
   const [searchValue, setSearchValue] = useState('');
-  const [searchedArticles, setSearchedArticles] = useState();
+  const [searchedPosts, setSearchedPosts] = useState();
 
-  const { articles } = useData();
+  const { posts } = useData();
   const { t } = useTranslation();
 
   useEffect(() => {
     if (searchValue) {
-      const foundedSearchedItems = articles.filter(
+      const foundedSearchedItems = posts.filter(
         (a) =>
           a.title.includes(searchValue) ||
           a.tag.includes(searchValue) ||
           a.description.includes(searchValue)
       );
-      setSearchedArticles(foundedSearchedItems);
+      setSearchedPosts(foundedSearchedItems);
     } else {
-      setSearchedArticles(articles);
+      setSearchedPosts(posts);
     }
-  }, [searchValue, articles]);
+  }, [searchValue, posts]);
 
   function handleSearchOnChange(value) {
     clearTimeout(searchTimeout);
@@ -34,14 +34,14 @@ export default function Articles() {
     }, 600);
   }
 
-  const getArticles = () => {
+  const getPosts = () => {
     return (
-      searchedArticles &&
-      searchedArticles.map((article) => {
+      searchedPosts &&
+      searchedPosts.map((post) => {
         return (
-          article.title && (
-            <span key={article.row_id}>
-              <ArticleCard article={article} />
+          post.title && (
+            <span key={post.row_id}>
+              <PostCard post={post} />
               <div className="h-px bg-gradient-to-r opacity-75 from-gray-300 dark:from-gray-600 to-transparent last-of-type:hidden"></div>
             </span>
           )
@@ -51,17 +51,17 @@ export default function Articles() {
   };
 
   return (
-    articles && (
+    posts && (
       <div className="max-w-xl mx-auto font-['regular']">
         <p className="text-md text-dark dark:text-gray-300 mt-12">
-          {t('article_description')}
+          {t('blog_description')}
         </p>
         <SearchInput
           className={'mt-16 mb-8'}
           onChange={handleSearchOnChange}
-          placeholder={t('article_search')}
+          placeholder={t('blog_search')}
         />
-        {getArticles()}
+        {getPosts()}
       </div>
     )
   );

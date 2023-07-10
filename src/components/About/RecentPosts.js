@@ -6,20 +6,20 @@ import { slugify } from '../../lib/helper';
 
 export default function RecentPosts() {
   const { t } = useTranslation();
-  const { articles } = useData();
+  const { posts } = useData();
 
   const [recentPosts, setRecentPosts] = useState(() => {
-    if (articles) {
-      return articles.slice(0, 3);
+    if (posts) {
+      return posts.slice(0, 3);
     }
     return null;
   });
 
   useEffect(() => {
-    if (articles) {
-      setRecentPosts(articles.slice(0, 3));
+    if (posts) {
+      setRecentPosts(posts.slice(0, 3));
     }
-  }, [articles]);
+  }, [posts]);
 
   return (
     recentPosts && (
@@ -29,7 +29,7 @@ export default function RecentPosts() {
           {recentPosts.map((post) => (
             <Link
               key={post.row_id}
-              to={`/articles/${slugify(post.title)}`}
+              to={`/blog/${slugify(post.title)}`}
               className="p-3 border-4 border-gray-200 hover:border-portakal dark:border-gray-700 dark:hover:border-portakal rounded-md"
             >
               <p className="text-lg font-['semibold']">{post.title}</p>

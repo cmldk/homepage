@@ -14,7 +14,7 @@ export default function Header() {
   const headerItems = [
     { key: 'about', href: '/', title: t('aboutme') },
     { key: 'projects', href: '/projects', title: t('projects') },
-    { key: 'articles', href: '/articles', title: t('articles') },
+    { key: 'blog', href: '/blog', title: t('blog') },
     { key: 'bookmarks', href: '/bookmarks', title: t('bookmarks') },
     { key: 'gallery', href: '/gallery', title: t('gallery') },
     { key: 'resume', href: '/resume', title: 'Resume' },

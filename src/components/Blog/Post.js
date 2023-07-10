@@ -4,22 +4,22 @@ import { useData } from '../../DataProvider';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import Markdown from 'react-markdown';
 import MDComponents from './MDComponents';
-import './Article.css';
+import './Post.css';
 import { format } from 'date-fns';
-import { ARTICLE_DATE_FORMAT } from '../../lib/constants';
+import { POST_DATE_FORMAT } from '../../lib/constants';
 import * as Locales from 'date-fns/locale';
 import Icon from '../Base/Icon/Icon';
 
-export default function Article() {
+export default function Post() {
   const { slug } = useParams();
   const { hash } = useLocation();
-  const { articles, isLoading } = useData();
+  const { posts, isLoading } = useData();
   const navigate = useNavigate();
   const { i18n } = useTranslation();
 
-  const [article, setArticle] = useState(() => {
-    if (articles) {
-      return articles.find((a) => a.slug === slug);
+  const [post, setPost] = useState(() => {
+    if (posts) {
+      return posts.find((a) => a.slug === slug);
     }
     return null;
   });
@@ -31,15 +31,15 @@ export default function Article() {
   }, []);
 
   useEffect(() => {
-    if (!article && articles) {
-      const relatedArticle = articles.find((a) => a.slug === slug);
-      if (relatedArticle) {
-        setArticle(relatedArticle);
+    if (!post && posts) {
+      const relatedPost = posts.find((a) => a.slug === slug);
+      if (relatedPost) {
+        setPost(relatedPost);
       } else {
         navigate('/404');
       }
     }
-  }, [slug, article, articles, navigate]);
+  }, [slug, post, posts, navigate]);
 
   useEffect(() => {
     const anchor = hash.slice(1);
@@ -78,28 +78,28 @@ export default function Article() {
   };
 
   const getDate = () => {
-    return format(new Date(article.published_at), ARTICLE_DATE_FORMAT, {
+    return format(new Date(post.published_at), POST_DATE_FORMAT, {
       locale: Locales[i18n.language],
     });
   };
 
   const getTags = () => {
-    const tags = article.tag.replaceAll(';', ', ');
+    const tags = post.tag.replaceAll(';', ', ');
     return <span className="text-sm text-portakal uppercase">{tags}</span>;
   };
 
   return (
-    article && (
+    post && (
       <div className="mt-12">
         <Markdown
           className="max-w-2xl mx-auto text-md text-dark dark:text-light"
           components={MDComponents}
         >
-          {article.content}
+          {post.content}
         </Markdown>
         <div className="flex w-full items-center justify-between text-sm flex-wrap mt-12">
-          {article.tag && getTags()}
-          <time dateTime={article.published_at} className="text-gray-400">
+          {post.tag && getTags()}
+          <time dateTime={post.published_at} className="text-gray-400">
             {getDate()}
           </time>
         </div>

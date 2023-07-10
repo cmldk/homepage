@@ -80,7 +80,7 @@ function h2({ children, node, ...props }) {
   return (
     <h2
       id={slugify(value)}
-      className="article-heading text-2xl mt-8 my-2 text-dark dark:text-light font-['semibold']"
+      className="blog-heading text-2xl mt-8 my-2 text-dark dark:text-light font-['semibold']"
       {...props}
     >
       <a className="anchor-heading" href={`#${slugify(value)}`}>
@@ -97,7 +97,7 @@ function h3({ children, node, ...props }) {
   return (
     <h3
       id={slugify(value)}
-      className="article-heading text-xl mt-4 my-1 text-dark dark:text-light font-['semibold']"
+      className="blog-heading text-xl mt-4 my-1 text-dark dark:text-light font-['semibold']"
       {...props}
     >
       <a className="anchor-heading" href={`#${slugify(value)}`}>
@@ -114,7 +114,7 @@ function h4({ children, node, ...props }) {
   return (
     <h4
       id={slugify(value)}
-      className="article-heading text-lg mt-4 my-2 text-dark dark:text-light font-['semibold']"
+      className="blog-heading text-lg mt-4 my-2 text-dark dark:text-light font-['semibold']"
       {...props}
     >
       <a className="anchor-heading" href={`#${slugify(value)}`}>
@@ -131,7 +131,7 @@ function h5({ children, node, ...props }) {
   return (
     <h5
       id={slugify(value)}
-      className="article-heading text-md mt-3 my-2 text-dark dark:text-light font-['regular']"
+      className="blog-heading text-md mt-3 my-2 text-dark dark:text-light font-['regular']"
       {...props}
     >
       <a className="anchor-heading" href={`#${slugify(value)}`}>

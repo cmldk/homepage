@@ -21,7 +21,7 @@ const DataProvider = ({ children, pathName }) => {
   const [social, setSocial] = useState();
   const [about, setAbout] = useState();
   const [bookmarks, setBookmarks] = useState();
-  const [articles, setArticles] = useState();
+  const [posts, setPosts] = useState();
   const [projects, setProjects] = useState();
   const [skills, setSkills] = useState();
   const [suggestion, setSuggestion] = useState();
@@ -88,7 +88,7 @@ const DataProvider = ({ children, pathName }) => {
     setBookmarks(data);
   };
 
-  const _setArticles = (data) => {
+  const _setPosts = (data) => {
     const sortedData = data
       .map((a) => {
         if (a.display && a.title && a.content && a.published_at) {
@@ -105,7 +105,7 @@ const DataProvider = ({ children, pathName }) => {
           parseISO(b.published_at).getTime() -
           parseISO(a.published_at).getTime()
       );
-    setArticles(sortedData);
+    setPosts(sortedData);
   };
 
   const _setProjects = (data) => {
@@ -128,7 +128,7 @@ const DataProvider = ({ children, pathName }) => {
         header: _setHeader,
         translation: setResources,
         suggestion: _setSuggestion,
-        articles: _setArticles,
+        blog: _setPosts,
         projects: _setProjects,
         skills: _setSkills,
       };
@@ -158,7 +158,7 @@ const DataProvider = ({ children, pathName }) => {
         bookmarks,
         languages,
         suggestion,
-        articles,
+        posts,
         projects,
         skills,
       }}
@@ -176,7 +176,7 @@ const useData = () => {
     header,
     bookmarks,
     languages,
-    articles,
+    posts,
     suggestion,
     projects,
     skills,
@@ -189,7 +189,7 @@ const useData = () => {
     isLoading,
     languages,
     suggestion,
-    articles,
+    posts,
     projects,
     skills,
   };
