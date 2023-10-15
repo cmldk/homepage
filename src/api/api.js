@@ -1,28 +1,44 @@
-import { BASE_URL, MAIN_TABLE_ID } from '../lib/constants';
+import {
+  BASE_URL,
+  MAIN_BASE_ID,
+  MAIN_TABLE_ID,
+  AIRTABLE_API_TOKEN,
+} from '../lib/constants';
 
 export const fetchMainTable = async (handleTableResponse) => {
-  const API_MAIN_RETABLE_URL = `${BASE_URL}/${MAIN_TABLE_ID}/json`;
-
-  fetch(API_MAIN_RETABLE_URL)
+  const API_MAIN_AIRTABLE_URL = `${BASE_URL}/${MAIN_BASE_ID}/${MAIN_TABLE_ID}`;
+  fetch(API_MAIN_AIRTABLE_URL, {
+    method: 'GET',
+    headers: {
+      Authorization: `Bearer ${AIRTABLE_API_TOKEN}`,
+      'Content-Type': 'application/json',
+    },
+  })
     .then((response) => response.json())
     .then((jsonData) => {
       // fetch given necessary tables data
-      jsonData.data.forEach((row) => {
-        const setState = handleTableResponse(row.key);
-        if (row.key && setState) {
-          fetchSingleTableData(row.table_id, setState, row.url_param);
+      jsonData.records.forEach((row) => {
+        const setState = handleTableResponse(row.fields.key);
+        if (row.fields.key && setState) {
+          fetchSingleTableData(row.fields.table_id, setState);
         }
       });
     })
     .catch((error) => console.error(error));
 };
 
-const fetchSingleTableData = async (tableID, setResponse, urlParam) => {
-  const API_RETABLE_URL = `${BASE_URL}/${tableID}/json${urlParam ?? ''}`;
+const fetchSingleTableData = async (tableID, setResponse) => {
+  const API_TABLE_URL = `${BASE_URL}/${MAIN_BASE_ID}/${tableID}`;
 
-  fetch(API_RETABLE_URL)
+  fetch(API_TABLE_URL, {
+    method: 'GET',
+    headers: {
+      Authorization: `Bearer ${AIRTABLE_API_TOKEN}`,
+      'Content-Type': 'application/json',
+    },
+  })
     .then((response) => response.json())
-    .then((jsonData) => setResponse(jsonData.data))
+    .then((jsonData) => setResponse(jsonData.records))
     .catch((error) => console.error(error));
 };
 

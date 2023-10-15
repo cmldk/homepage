@@ -46,22 +46,26 @@ const DataProvider = ({ children, pathName }) => {
   }, [languages, about, i18n]);
 
   const _setAbout = (data) => {
-    setAbout(data[0]);
+    setAbout(data[0]?.fields);
   };
 
   const _setSocial = (data) => {
-    setSocial(data.filter((row) => row.display));
+    setSocial(
+      data.filter((row) => row.fields?.display).map((row) => row.fields)
+    );
   };
 
   const _setHeader = (data) => {
-    setHeader(data.filter((row) => row.display).map((row) => row.key));
+    setHeader(
+      data.filter((row) => row.fields?.display).map((row) => row.fields.key)
+    );
   };
 
   const setResources = useCallback(
     async (data) => {
       // get languages
-      const initialLanguages = Object.keys(data[0]).filter(
-        (key) => key !== 'key' && key !== 'row_id'
+      const initialLanguages = Object.keys(data[0]?.fields).filter(
+        (key) => key !== 'key'
       );
 
       // generate dictionary object
@@ -69,7 +73,7 @@ const DataProvider = ({ children, pathName }) => {
       initialLanguages.forEach((language) => {
         dictionary[language] = {};
         data.forEach((row) => {
-          dictionary[language][row.key] = row[language];
+          dictionary[language][row.fields.key] = row.fields[language];
         });
 
         // set language to i18n
@@ -91,11 +95,16 @@ const DataProvider = ({ children, pathName }) => {
   const _setPosts = (data) => {
     const sortedData = data
       .map((a) => {
-        if (a.display && a.title && a.content && a.published_at) {
-          a.slug = slugify(a.title);
-          a.published_at = parseISO(a.published_at);
-          delete a.images;
-          return a;
+        if (
+          a.fields.display &&
+          a.fields.title &&
+          a.fields.content &&
+          a.fields.published_at
+        ) {
+          a.fields.slug = slugify(a.fields.title);
+          a.fields.published_at = parseISO(a.fields.published_at);
+          delete a.fields.images;
+          return a.fields;
         }
         return null;
       })
@@ -109,15 +118,19 @@ const DataProvider = ({ children, pathName }) => {
   };
 
   const _setProjects = (data) => {
-    setProjects(data.filter((row) => row.display));
+    setProjects(
+      data.filter((row) => row.fields.display).map((row) => row.fields)
+    );
   };
 
   const _setSkills = (data) => {
-    setSkills(data.filter((row) => row.display));
+    setSkills(
+      data.filter((row) => row.fields.display).map((row) => row.fields)
+    );
   };
 
   const _setSuggestion = (data) => {
-    setSuggestion(data[0]);
+    setSuggestion(data[0]?.fields);
   };
 
   const handleTableResponse = useCallback(
