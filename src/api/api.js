@@ -63,3 +63,29 @@ export const fetchBookmarks = async (setResponse) => {
     })
   );
 };
+
+export const postTo = async (baseID, tableID, data) => {
+  const API_TABLE_URL = `${BASE_URL}/${baseID}/${tableID}`;
+  const requestBody = {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${AIRTABLE_API_TOKEN}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  };
+
+  try {
+    const response = await fetch(API_TABLE_URL, requestBody);
+    if (response.ok) {
+      const jsonData = await response.json();
+      return jsonData;
+    } else {
+      console.error('Error: ', response);
+      return null;
+    }
+  } catch (error) {
+    console.error('Error: ', error);
+    return null;
+  }
+};

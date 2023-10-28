@@ -4,6 +4,7 @@ import Social from '../Social/Social';
 import RecentPosts from './RecentPosts';
 import SideProjects from './SideProjects';
 import Skills from './Skills';
+import Postbox from '../Postbox/Postbox';
 
 export default function About() {
   const { t } = useTranslation();
@@ -92,6 +93,7 @@ export default function About() {
           <div className="w-1.5 h-1.5 rounded-full dark:bg-gray-300 bg-dark"></div>
         </div>
       </span>
+      <Postbox />
     </div>
   );
 }

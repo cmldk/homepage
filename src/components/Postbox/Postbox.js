@@ -1,9 +1,9 @@
 import { Fragment, useState } from 'react';
 import { Popover, Transition } from '@headlessui/react';
 import { useTranslation } from 'react-i18next';
-import { BASE_URL } from '../../lib/constants';
 import { useData } from '../../DataProvider';
 import Icon from '../Base/Icon/Icon';
+import { postTo } from '../../api/api';
 
 export default function Postbox() {
   const { t } = useTranslation();
@@ -17,38 +17,18 @@ export default function Postbox() {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const payload = {
-      data: [
+    const data = {
+      records: [
         {
-          columns: [
-            {
-              column_id: suggestion?.insert_column_id,
-              cell_value: content,
-            },
-          ],
+          fields: {
+            Content: content,
+          },
         },
       ],
     };
 
-    const SUGGESTION_TABLE_ID = suggestion.suggestions_table_id;
-    const API_SUGGESTION_RETABLE_URL = `${BASE_URL}/${SUGGESTION_TABLE_ID}/json`;
-
-    // try {
-    //   let response = await fetch(API_SUGGESTION_RETABLE_URL, {
-    //     method: 'POST',
-    //     headers: {
-    //       'Content-Type': 'application/json',
-    //     },
-    //     body: JSON.stringify(payload),
-    //   });
-    //   if (!response.ok) {
-    //     throw new Error(`HTTP error! status: ${response.status}`);
-    //   }
-    //   localStorage.setItem('postbox', true);
-    //   setPostboxSended(true);
-    // } catch (error) {
-    //   console.error(error);
-    // }
+    postTo(suggestion.base_id, suggestion.table_id, data);
+    setPostboxSended(true);
   };
 
   return (
@@ -93,7 +73,7 @@ export default function Postbox() {
                           rows={5}
                           className="resize-none mt-1 block w-full dark:bg-gray-200 rounded-md p-1.5 border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 text-sm"
                           defaultValue={''}
-                          maxLength={5000}
+                          maxLength={1000}
                           onChange={(e) =>
                             e.target.checkValidity() &&
                             setContent(e.target.value)
@@ -110,7 +90,7 @@ export default function Postbox() {
                       <span className="ml-auto">
                         <button
                           type="submit"
-                          className="rounded-md bg-portakal py-2 px-3 text-sm text-light shadow-sm hover:bg-orange-400"
+                          className="rounded-md py-2 px-3 text-sm text-light shadow-sm"
                         >
                           {t('drop')}
                         </button>

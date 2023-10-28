@@ -154,7 +154,7 @@ const DataProvider = ({ children, pathName }) => {
     setLoading(true);
     fetchMainTable(handleTableResponse);
     fetchBookmarks(_setBookmarks);
-    // localStorage.removeItem('postbox');
+    localStorage.removeItem('postbox');
   }, [handleTableResponse]);
 
   const setLoading = (value) => {
