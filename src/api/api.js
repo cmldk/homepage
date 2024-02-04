@@ -19,17 +19,19 @@ export const fetchMainTable = async (handleTableResponse) => {
       // fetch given necessary tables data
       jsonData.records.forEach((row) => {
         const setState = handleTableResponse(row.fields.key);
+        const fieldsKey = row.fields.key;
         if (row.fields.key && setState) {
-          fetchSingleTableData(row.fields.table_id, setState);
+          fetchSingleTableData(row.fields.table_id, setState, fieldsKey);
         }
       });
     })
     .catch((error) => console.error(error));
 };
 
-const fetchSingleTableData = async (tableID, setResponse) => {
-  const API_TABLE_URL = `${BASE_URL}/${MAIN_BASE_ID}/${tableID}`;
-
+const fetchSingleTableData = async (tableID, setResponse, fieldsKey) => {
+  const API_TABLE_URL = `${BASE_URL}/${MAIN_BASE_ID}/${tableID}${
+    fieldsKey === 'skills' ? '?sort%5B0%5D%5Bfield%5D=order' : ''
+  }`;
   fetch(API_TABLE_URL, {
     method: 'GET',
     headers: {
