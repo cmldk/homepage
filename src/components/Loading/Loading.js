@@ -1,13 +1,17 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useData } from '../../DataProvider';
 
 function Loading() {
   // general
   const { isLoading } = useData();
 
+  useEffect(() => {
+    setLoading(isLoading);
+  }, [isLoading]);
+
   // set a delay of at least 1 second to simulate a loading process
   const [loading, setLoading] = useState(true);
-  setTimeout(() => setLoading(false), 1000);
+  // setTimeout(() => setLoading(false), 1000);
 
   return (
     <>

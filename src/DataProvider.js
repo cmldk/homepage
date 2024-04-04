@@ -83,7 +83,7 @@ const DataProvider = ({ children, pathName }) => {
       setLanguages(initialLanguages);
       setTimeout(() => {
         setLoading(false);
-      }, 500);
+      }, 0);
     },
     [i18n]
   );
