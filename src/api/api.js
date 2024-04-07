@@ -60,8 +60,8 @@ export const fetchBookmarks = async (setResponse) => {
 
   setResponse(
     data.items.map((item) => {
-      const { _id, created, link, title, domain, tags } = item;
-      return { _id, created, link, title, domain, tags };
+      const { _id, created, link, domain, tags, excerpt } = item;
+      return { _id, created, link, title: excerpt, domain, tags };
     })
   );
 };
