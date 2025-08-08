@@ -1,0 +1,35 @@
+---
+// src/pages/bookmarks/index.astro
+
+import PageLayout from '@layouts/PageLayout.astro';
+import Container from '@components/Container.astro';
+import { BOOKMARKS } from '@consts';
+import { fetchRaindropBookmarks } from '@lib/raindrop';
+import BookmarkCard from '@components/BookmarkCard.astro';
+import type { Bookmark } from '@types';
+
+const data = await fetchRaindropBookmarks();
+
+const bookmarks = data.bookmarks || [];
+---
+
+<PageLayout title={BOOKMARKS.TITLE} description={BOOKMARKS.DESCRIPTION}>
+  <Container>
+    <div class="space-y-10">
+      <div class="animate font-semibold text-black dark:text-white">
+        Bookmarks
+      </div>
+      <ul id="bookmark-list" class="animate flex flex-col gap-4">
+        {
+          bookmarks.length === 0 ? (
+            <li>No bookmarks found.</li>
+          ) : (
+            bookmarks.map((bookmark: Bookmark) => (
+              <BookmarkCard bookmark={bookmark} />
+            ))
+          )
+        }
+      </ul>
+    </div>
+  </Container>
+</PageLayout>
